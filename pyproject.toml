@@ -1,0 +1,30 @@
+[project]
+name = "scarecrow"
+version = "0.0.1"
+description = "Insert prompt injections into Office files so humans read them normally but an ingesting LLM is derailed."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "typer>=0.12",
+    "python-docx>=1.1",
+    "python-pptx>=1.0",
+    "openpyxl>=3.1",
+    "lxml>=5.0",
+]
+
+[project.scripts]
+scarecrow = "scarecrow.cli:app"
+
+[project.optional-dependencies]
+# Layer-1 tests only. Layer-2 LLM benchmarks are not part of the
+# installable package or CI (non-deterministic, cost money).
+dev = [
+    "pytest>=8.0",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["scarecrow*"]
